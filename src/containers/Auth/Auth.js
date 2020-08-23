@@ -5,6 +5,7 @@ import Button from '../../components/UI/Button/Button'
 import { connect } from 'react-redux'
 import { auth } from '../../store/actions/auth'
 import './Auth.css'
+import { Redirect } from 'react-router-dom'
 
 class Auth extends Component {
     state = {
@@ -43,6 +44,9 @@ class Auth extends Component {
           this.state.formControls.password.value,
           true
         )
+        // .then((resp) => {
+        //   this.props.history.push('/Table')
+        // })
     }
     submitHandler = event => {
         event.preventDefault()
@@ -112,29 +116,37 @@ class Auth extends Component {
 
     
     render() {
+      if(this.props.token) {
+        return <Redirect to="/Table"/>
+      }
         return (
-            <div className="Auth">
-                <form onSubmit={this.submitHandler}>
-                    <div className="title">Авторизация</div>
-                    {this.props.error ? <span>{this.props.error}</span> : <span></span>}
-                    { this.renderInputs() }
+          <div className="container">
+            <div className="Auth-container">
+              <div className="Auth">
+                  <div className="title">Авторизация</div>
+                  <form onSubmit={this.submitHandler}>
+                      {this.props.error ? <span className="error">{this.props.error}</span> : <span></span>}
+                      { this.renderInputs() }
 
-                    <Button
-                        type="success"
-                        onClick={this.loginHandler}
-                        dispatch={!this.state.isFormValid}
-                    >
-                        Войти
-                    </Button>
-                </form>
+                      <Button
+                          type="success"
+                          onClick={this.loginHandler}
+                          dispatch={!this.state.isFormValid}
+                      >
+                          Войти
+                      </Button>
+                  </form>
+              </div>
             </div>
+          </div>
         )
     }
 }
 
 function mapStateToProps(state) {
     return {
-        error: state.auth.error
+        error: state.auth.error,
+        token: state.auth.token
     }
 }
 

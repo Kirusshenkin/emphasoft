@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import './Header.css'
 import { NavLink } from 'react-router-dom'
 
 class Header extends Component {
@@ -28,12 +29,16 @@ class Header extends Component {
             links.push({to: '/logout', label: 'Выйти', exact: false})
         } else {
             links.push({to:'/Login', label: 'Авторизация', exact: false})
+            links.push({to: '/logout', label: 'Выйти', exact: false})
         }
         return (
             <header>
                 <div className="container">
                     <div className="row">
-                        <div className="col md-8">
+                        <div className="col md-11">
+
+                        </div>
+                        <div className="col md-1">
                             {this.renderLinks(links)}
                         </div>
                     </div>

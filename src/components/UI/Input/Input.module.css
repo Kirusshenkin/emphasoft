@@ -1,28 +1,35 @@
 Input {
     font-size: 16px;
-    background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 3px;
-    box-sizing: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.3);
+    /* background-color: rgba(0, 0, 0, 0.1); */
+    border-radius: 1px;
+    line-height: 1rem;
+    /* box-sizing: border-box; */
+    border: 1px solid #bbb;
     color: #000000;
-    padding: 10px;
+    padding: 0 0 0 10px;
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 25px;
+    height: 40px;
+    border-radius: 5px;
+    outline: 0;
 }
 
 .Input:hover {
     border-color: #040405;
 }
 
-.Input label {
+/* .Input label {
     margin-bottom: 3px;
     padding: 0;
     display: block;
     font-weight: bold;
     color: #8e9297;
-}
+} */
 
 .Input:focus {
-    outline: none !important;
-    border:1px solid #7289da;
+    /* outline: none !important; */
+    border: 1px solid #3498db;
     
 }
 input[type='number'] {

@@ -16,9 +16,9 @@ const Input = props => {
 
     return (
         <div className={style.join(' ')}>
-            <label htmlFor={htmlFor} >
+            {/* <label htmlFor={htmlFor} >
                 {props.label}
-            </label>
+            </label> */}
             <input 
                 type={inputType}
                 name={props.name}
