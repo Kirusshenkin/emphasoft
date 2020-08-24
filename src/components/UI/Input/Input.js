@@ -8,7 +8,6 @@ function isInvalid({valid, touched, shouldValidate}) {
 const Input = props => {
     const inputType = props.type || 'text'
     const style = [styles.Input]
-    const htmlFor = `${inputType}-${Math.random()}`
 
     if (isInvalid(props)) {
         style.push(styles.invalid)
@@ -16,9 +15,6 @@ const Input = props => {
 
     return (
         <div className={style.join(' ')}>
-            {/* <label htmlFor={htmlFor} >
-                {props.label}
-            </label> */}
             <input 
                 type={inputType}
                 name={props.name}

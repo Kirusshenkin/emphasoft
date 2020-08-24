@@ -2,7 +2,6 @@ import axios from 'axios'
 import {store} from '../hoc/Store/Store'
 
 axios.interceptors.request.use(function (config) {
-    console.log(123421434)
     const token = store.getState().session.token;
     config.headers.Authorization =  token;
 

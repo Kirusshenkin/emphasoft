@@ -44,9 +44,6 @@ class Auth extends Component {
           this.state.formControls.password.value,
           true
         )
-        // .then((resp) => {
-        //   this.props.history.push('/Table')
-        // })
     }
     submitHandler = event => {
         event.preventDefault()
