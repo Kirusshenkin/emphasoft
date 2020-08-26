@@ -28,7 +28,7 @@ class Header extends Component {
             links.push({to: '/Table', label: 'Список пользователей', exact: false})
             links.push({to: '/logout', label: 'Выйти', exact: false})
         } else {
-            links.push({to:'/Login', label: 'Авторизация', exact: false})
+            // links.push({to:'/Login', label: 'Авторизация', exact: false})
             links.push({to: '/logout', label: 'Выйти', exact: false})
         }
         return (

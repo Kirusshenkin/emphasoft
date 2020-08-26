@@ -1,29 +1,30 @@
-import { FETCH_INFORMATION_REQUEST, FETCH_INFORMATION_SUCCESS, FETCH_INFORMATION_ERROR } from '../actions/actionTypes'
+import { FETCH_INFORMATION_REQUEST, FETCH_INFORMATION_SUCCESS, FETCH_INFORMATION_ERROR, FETCH_INFORMATION_SORT } from '../actions/actionTypes'
 
 const initialState = {
-    information: [],
+    data: [],
     isLoading: false,
     error: null,
-    search: '',
     sort: 'asc',
     sortField: 'id',
-    row: null,
-    currentPage: 0
 }
 
 export default function informationReducer (state = initialState, action) {
     switch (action.type) {
         case FETCH_INFORMATION_REQUEST:
             return {
-                ...state, loading: true
+                ...state, isLoading: true
             }
         case FETCH_INFORMATION_SUCCESS:
             return {
-                ...state, loading: false, information: action.information
+                ...state, isLoading: false, data: action.data
             }
         case FETCH_INFORMATION_ERROR:
             return {
-                ...state, loading: false, information: action.error
+                ...state, isLoading: false, data: action.error
+            }
+        case FETCH_INFORMATION_SORT:
+            return {
+                ...state, sort: action.sort, sortField: action.sortField
             }
         default:
             return state

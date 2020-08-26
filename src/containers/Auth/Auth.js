@@ -12,7 +12,7 @@ class Auth extends Component {
         redirectToReferrer: false,
         isFormValid: false,
         formControls: {
-            username: {
+          username: {
             value: '',
             type: 'text',
             label: 'username',
@@ -72,24 +72,24 @@ class Auth extends Component {
     }
 
     onChangeHandler = (event, controlName) => {
-        const formControls = { ...this.state.formControls }
-        const control = { ...formControls[controlName] }
-    
-        control.value = event.target.value
-        control.touched = true
-        control.valid = this.validateControl(control.value, control.validation)
-    
-        formControls[controlName] = control
-    
-        let isFormValid = true
-    
-        Object.keys(formControls).forEach(name => {
-          isFormValid = formControls[name].valid && isFormValid
-        })
-    
-        this.setState({
-          formControls, isFormValid
-        })
+      const formControls = { ...this.state.formControls }
+      const control = { ...formControls[controlName] }
+  
+      control.value = event.target.value
+      control.touched = true
+      control.valid = this.validateControl(control.value, control.validation)
+  
+      formControls[controlName] = control
+  
+      let isFormValid = true
+  
+      Object.keys(formControls).forEach(name => {
+        isFormValid = formControls[name].valid && isFormValid
+      })
+  
+      this.setState({
+        formControls, isFormValid
+      })
     }
 
     renderInputs() {

@@ -1,0 +1,20 @@
+.list-user {
+    display: flex;
+    justify-content: center;
+}
+
+.user-active {
+    display: block;
+    height: 10px;
+    width: 10px;
+    background: #000;
+    border-radius: 50%;
+}
+
+.online {
+    background: rgb(30, 255, 0);
+}
+
+.offline {
+    background: #cc0000;
+}
