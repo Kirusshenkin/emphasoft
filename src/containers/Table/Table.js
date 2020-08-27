@@ -43,7 +43,7 @@ class Сharacter extends Component {
             onSearch={this.searchHandler}
             onKeyPress={this.searchHandler}
           />
-            <Table className="w-100">
+            <Table className="w-100" responsive="sm">
               <thead>
                 <tr>
                   <th onClick={this.onSort.bind(null, 'id')}>
@@ -52,6 +52,7 @@ class Сharacter extends Component {
                   <th>Никнейм</th>
                   <th>Имя</th>
                   <th>Фамилия</th>
+                  <th>Пароль</th>
                   <th>Антивен</th>
                   <th>Дата</th>
                   <th>Разрешение</th>
@@ -64,6 +65,7 @@ class Сharacter extends Component {
                     <td>{item.username}</td>
                     <td>{item.first_name}</td>
                     <td>{item.last_name}</td>
+                    <td>{item.password}</td>
                     <td className="list-user">{item.is_active ? <div className="user-active online"/> : <div className="user-active offline"/>}</td>
                     <td>{this.displayDate(item.last_login)}</td>
                     <td>{item.is_superuser ? 'Есть' : 'Нету'}</td>

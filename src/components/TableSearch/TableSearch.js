@@ -28,14 +28,12 @@ class TableSearch extends Component {
     }
 
     handleKeyPress = (event) => {
-        // console.log('event',event)
         if(event.key === 'Enter'){
         this.props.onSearch(this.state.formControls.search.value)
         }
     }
     render() {
         const {value} = this.state.formControls.search
-        // console.log(this.state.formControls.search.value)
         return (
             <InputGroup className="mb-3 mt-3" >
                 <InputGroup.Prepend>
@@ -49,6 +47,7 @@ class TableSearch extends Component {
                     value={value}
                     onChange={event => this.onChangeHandler(event, 'search')}
                     onKeyPress={this.handleKeyPress}
+                    style={{margin:0}}
                 />
             </InputGroup>
         )

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import './Header.css'
 import { NavLink } from 'react-router-dom'
+import { Container, Row, Col } from 'react-bootstrap'
 
 class Header extends Component {
     
@@ -20,29 +21,22 @@ class Header extends Component {
         })
     }
     render() {
-        const links = [
-            // {to: '/Login', label: 'Авторизация', exact: true}
-        ]
-
+        const links = []
         if (this.props.isAuthenticated) {
-            links.push({to: '/Table', label: 'Список пользователей', exact: false})
-            links.push({to: '/logout', label: 'Выйти', exact: false})
-        } else {
-            // links.push({to:'/Login', label: 'Авторизация', exact: false})
             links.push({to: '/logout', label: 'Выйти', exact: false})
         }
+
         return (
             <header>
-                <div className="container">
-                    <div className="row">
-                        <div className="col md-11">
-
-                        </div>
-                        <div className="col md-1">
+                <Container>
+                    <Row>
+                        <Col sm={8}/>
+                        <Col sm={2}/>
+                        <Col sm={2} style={{textAlign: "right"}}>
                             {this.renderLinks(links)}
-                        </div>
-                    </div>
-                </div>
+                        </Col>
+                    </Row>
+                </Container>
             </header>
         )
     }
