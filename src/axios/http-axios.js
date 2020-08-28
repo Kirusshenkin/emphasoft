@@ -9,7 +9,7 @@ axios.interceptors.request.use(function (config) {
 });
 
 let instance = axios.create({
-    baseURL: 'http://emphasoft-test-assignment.herokuapp.com/',
+    baseURL: 'https://emphasoft-test-assignment.herokuapp.com/',
 })
 instance.interceptors.request.use(function (config) {
     const token = localStorage.getItem('token');
