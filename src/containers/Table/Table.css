@@ -46,8 +46,6 @@
 .rwd-table td:before {
     content: attr(data-th) ": ";
     font-weight: bold;
-    width: 6.5em;
-    display: inline-block;
 }
 
 @media (min-width: 768px) {
