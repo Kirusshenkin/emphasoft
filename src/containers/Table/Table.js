@@ -36,24 +36,24 @@ class Сharacter extends Component {
     return <div className="BaseData"><Loader/></div>
     return (
       <div className="BaseData w-100">
-      <Container>
+      <Container fluid="sm">
         <Row>
           <Col>
           <TableSearch
             onSearch={this.searchHandler}
             onKeyPress={this.searchHandler}
           />
-            <Table className="w-100" responsive="sm">
+          <div className="table-responsive-sm">
+            <Table bordered responsive="md" className="rwd-table">
               <thead>
                 <tr>
                   <th onClick={this.onSort.bind(null, 'id')}>
                     ID {this.props.sortField === 'id' ? <FontAwesomeIcon icon={(this.props.sort === 'desc') ? faSortDown : faSortUp}/> : null}
                   </th>
-                  <th>Никнейм</th>
+                  <th>Имя пользователя</th>
                   <th>Имя</th>
                   <th>Фамилия</th>
                   <th>Пароль</th>
-                  <th>Антивен</th>
                   <th>Дата</th>
                   <th>Разрешение</th>
                 </tr>
@@ -61,18 +61,18 @@ class Сharacter extends Component {
               <tbody>
                 {this.props.users ? this.props.users.map((item, key) => (
                   <tr key={key}>
-                    <th>{item.id}</th>
-                    <td>{item.username}</td>
-                    <td>{item.first_name}</td>
-                    <td>{item.last_name}</td>
-                    <td>{item.password}</td>
-                    <td className="list-user">{item.is_active ? <div className="user-active online"/> : <div className="user-active offline"/>}</td>
-                    <td>{this.displayDate(item.last_login)}</td>
-                    <td>{item.is_superuser ? 'Есть' : 'Нету'}</td>
+                    <td data-th="ID">{item.id}</td>
+                    <td data-th="Имя польз.">{item.username}</td>
+                    <td data-th="Имя">{item.first_name}</td>
+                    <td data-th="Фамилия">{item.last_name}</td>
+                    <td data-th="Пароль">{item.password}</td>
+                    <td data-th="Дата">{this.displayDate(item.last_login)}</td>
+                    <td data-th="Разрешение">{item.is_superuser ? 'Есть' : 'Нету'}</td>
                   </tr>
                 )): null}
               </tbody>
             </Table>
+            </div>
           </Col>
         </Row>
       </Container>
@@ -83,6 +83,7 @@ class Сharacter extends Component {
 
 function mapStateToProps(state) {
   let data = state.users.data
+  data = data.filter(item => item.is_active)
   data = data.filter(item => item.username.toLowerCase().includes(state.search.payload.toLowerCase()))
   data = _.orderBy(data, state.users.sortField, state.users.sort)
   return {

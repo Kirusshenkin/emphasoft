@@ -1,6 +1,7 @@
 .list-user {
     display: flex;
     justify-content: center;
+    padding: 15px !important;
 }
 
 .user-active {
@@ -18,3 +19,89 @@
 .offline {
     background: #cc0000;
 }
+
+.rwd-table {
+  margin: 1em 0;
+  color: #000;
+}
+.rwd-table th {
+    display: none;
+}
+
+.rwd-table td {
+    display: block;
+    box-sizing: border-box;
+}
+
+.rwd-table td:first-child {
+    margin-top: 0.5rem;
+    padding-top: 0.5em;
+}
+
+.rwd-table td:last-child {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5em;
+}
+
+.rwd-table td:before {
+    content: attr(data-th) ": ";
+    font-weight: bold;
+    width: 6.5em;
+    display: inline-block;
+}
+
+@media (min-width: 768px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+
+.rwd-table th,
+.rwd-table td {
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .rwd-table th,
+  .rwd-table td {
+    display: table-cell;
+    padding: 0.25em 0.5em;
+  }
+
+  .rwd-table th:first-child,
+  .rwd-table td:first-child {
+    padding-left: 0;
+  }
+
+  .rwd-table th:last-child,
+  .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+.rwd-table {
+  color: #000000;
+  border-radius: 0.4em;
+  overflow: hidden;
+}
+
+.rwd-table th {
+    margin: 0.2rem 0px;
+}
+
+.rwd-table td {
+  margin: 0.1em 0;
+}
+
+@media (min-width: 768px) {
+  .rwd-table th,
+  .rwd-table td {
+    padding: 1em !important;
+  }
+}
+
+.rwd-table th,
+.rwd-table td:before {
+  color: rgb(0, 0, 0);
+}
+
