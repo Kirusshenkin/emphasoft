@@ -1,4 +1,4 @@
-import { FETCH_INFORMATION_REQUEST, FETCH_INFORMATION_SUCCESS, FETCH_INFORMATION_ERROR, FETCH_INFORMATION_SORT } from '../actions/actionTypes'
+import { FETCH_INFORMATION_REQUEST, FETCH_INFORMATION_SUCCESS, FETCH_INFORMATION_ERROR, FETCH_INFORMATION_SORT, FETCH_EDIT_DATA, FETCH_EDIT_FIELD } from '../actions/actionTypes'
 
 const initialState = {
     data: [],
@@ -26,6 +26,22 @@ export default function informationReducer (state = initialState, action) {
             return {
                 ...state, sort: action.sort, sortField: action.sortField
             }
+        case FETCH_EDIT_DATA:
+            return {
+                ...state,
+                data: state.data.map(user => user.id === action.id ?
+                    { ...user, is_edit: !user.is_edit } : 
+                    user
+                ) 
+            }
+        case FETCH_EDIT_FIELD:
+            return {
+                ...state,
+                data: state.data.map(user => user.id === action.id ?
+                    { ...user, [action.field]: action.value } : 
+                    user
+                ) 
+            };
         default:
             return state
     }

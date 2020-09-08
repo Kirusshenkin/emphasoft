@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSortDown,faSortUp } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux'
-import {fetchInformation, fetchSort} from '../../store/actions/information'
+import {fetchInformation, fetchSort, fetchEditField, fetchEdit, fetchEditSave} from '../../store/actions/information'
 import Container from 'react-bootstrap/Container'
 import { Row, Col, Table } from 'react-bootstrap';
 import _ from 'lodash'
@@ -29,6 +29,24 @@ class Сharacter extends Component {
 
   displayDate(date) {
     return date ? moment(date).locale('ru').format('LL') : ''
+  }
+
+  editHandler(id) {
+    this.props.fetchEdit(id)
+  }
+
+  onChangeHandler(event, id, field) {
+    this.props.fetchEditField(id, field, event.target.value)
+  }
+
+  saveHandler(item) {
+    this.props.fetchEditSave(item, (res, data) => {
+      if(!res) {
+        alert(JSON.stringify(data.data))
+      } else {
+        this.props.fetchEdit(item.id)
+      }
+    })
   }
 
   render() {
@@ -61,13 +79,30 @@ class Сharacter extends Component {
               <tbody>
                 {this.props.users ? this.props.users.map((item, key) => (
                   <tr key={key}>
-                    <td data-th="ID">{item.id}</td>
-                    <td data-th="Имя польз.">{item.username}</td>
-                    <td data-th="Имя">{item.first_name}</td>
-                    <td data-th="Фамилия">{item.last_name}</td>
-                    <td data-th="Пароль">{item.password}</td>
+                    <td data-th="ID">{!item.is_edit ? <span>{item.id}</span> : <input disabled="disabled" defaultValue={item.id}/>}</td>
+                    <td data-th="Имя польз.">{!item.is_edit ? <span>{item.username}</span> : <input type="text" defaultValue={item.username} onChange={event => this.onChangeHandler(event, item.id,'username')}/>}</td>
+                    <td data-th="Имя">{!item.is_edit ? <span>{item.first_name}</span> : <input type="text" defaultValue={item.first_name} onChange={event => this.onChangeHandler(event, item.id,'first_name')}/>}</td>
+                    <td data-th="Фамилия">{!item.is_edit ? <span>{item.last_name}</span> : <input type="text" defaultValue={item.last_name} onChange={event => this.onChangeHandler(event, item.id,'last_name')}/>}</td>
+                    <td data-th="Пароль">{!item.is_edit ? <span>{item.password}</span> : <input type="text" defaultValue={item.password} onChange={event => this.onChangeHandler(event, item.id,'password')}/>}</td>
                     <td data-th="Дата">{this.displayDate(item.last_login)}</td>
-                    <td data-th="Разрешение">{item.is_superuser ? 'Есть' : 'Нету'}</td>
+                    <td data-th="Разрешение">{!item.is_edit ? <span>{item.is_superuser ? 'Есть' : 'Нету'}</span> : <input type="checkbox" onChange={event => this.onChangeHandler(event, item.id,'is_superuser')}/>}</td>
+                    <td data-th="">
+                      {!item.is_edit ?
+                      <button
+                        className="btn btn-light"
+                        onClick={() => {this.editHandler(item.id)}}
+                        >
+                          Редактировать
+                      </button>
+                      :
+                      <button
+                        className="btn btn-light"
+                        onClick={() => {this.saveHandler(item)}}
+                        >
+                        Сохранить
+                      </button>
+                      }
+                    </td>
                   </tr>
                 )): null}
               </tbody>
@@ -97,6 +132,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    fetchEditSave: (item, cb) => dispatch(fetchEditSave(item, cb)),
+    fetchEditField: (id, field, value) => dispatch(fetchEditField(id, field, value)),
+    fetchEdit: (id) => dispatch(fetchEdit(id)),
     fetchInformation: () => dispatch(fetchInformation()),
     fetchSearch: (search) => dispatch(fetchSearch(search)),
     fetchSort: (sort, sortField) => dispatch(fetchSort(sort, sortField)),

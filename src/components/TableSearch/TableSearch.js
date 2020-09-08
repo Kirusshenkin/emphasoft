@@ -32,6 +32,7 @@ class TableSearch extends Component {
         this.props.onSearch(this.state.formControls.search.value)
         }
     }
+    
     render() {
         const {value} = this.state.formControls.search
         return (

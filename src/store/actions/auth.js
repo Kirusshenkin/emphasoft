@@ -30,7 +30,6 @@ export function autoLogin() {
   return dispatch => {
       const token = localStorage.getItem('token')
       if (!token) {
-          // dispatch(logout())
       } else {
           dispatch(authSuccess(token))
       }
